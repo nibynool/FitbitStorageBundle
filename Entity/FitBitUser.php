@@ -72,6 +72,21 @@ class FitBitUser
 	 * @ORM\OneToMany(targetEntity="FitBitSleepSummary", mappedBy="FitBitUser")
 	 */
 	protected $FitBitSleepSummary;
+	/**
+	 * @var ArrayCollection An array collection of Requests made to FitBit on behalf of this user
+	 * @ORM\OneToMany(targetEntity="FitBitRequestLog", mappedBy="FitBitUser")
+	 */
+	protected $FitBitRequestLog;
+	/**
+	 * @var ArrayCollection An array collection of Subscription Updates that are required for this user
+	 * @ORM\OneToMany(targetEntity="FitBitSubscriptionUpdateLog", mappedBy="FitBitUser")
+	 */
+	protected $FitBitSubscriptionUpdateLog;
+	/**
+	 * @var ArrayCollection An array collection of Updates that are required for this user
+	 * @ORM\OneToMany(targetEntity="FitBitUpdateBacklog", mappedBy="FitBitUser")
+	 */
+	protected $FitBitUpdateBacklog;
 
 	/**
 	 * Class constructor
@@ -86,6 +101,9 @@ class FitBitUser
 		$this->FitBitActivityOtherDistance = new ArrayCollection();
 		$this->FitBitSleep                 = new ArrayCollection();
 		$this->FitBitSleepSummary          = new ArrayCollection();
+		$this->FitBitRequestLog            = new ArrayCollection();
+		$this->FitBitSubscriptionUpdateLog = new ArrayCollection();
+		$this->FitBitUpdateBacklog         = new ArrayCollection();
 	}
 
 	/**
@@ -432,5 +450,113 @@ class FitBitUser
 	public function getFitBitSleepSummaries()
 	{
 		return $this->FitBitSleepSummary;
+	}
+
+	/**
+	 * Add a FitBit Request Log Entry to this FitBit User
+	 *
+	 * @param FitBitRequestLog $log
+	 *
+	 * @return self
+	 */
+	public function addFitBitRequestLog(FitBitRequestLog $log)
+	{
+		$this->FitBitRequestLog[] = $log;
+		return $this;
+	}
+
+	/**
+	 * Remove a FitBit Request Log Entry from this FitBit User
+	 *
+	 * @param FitBitRequestLog $log
+	 *
+	 * @return self
+	 */
+	public function removeFitBitRequestLog(FitBitRequestLog $log)
+	{
+		$this->FitBitRequestLog->removeElement($log);
+		return $this;
+	}
+
+	/**
+	 * Get the FitBit Request Logs for this FitBit User
+	 *
+	 * @return ArrayCollection
+	 */
+	public function getFitBitRequestLogs()
+	{
+		return $this->FitBitRequestLog;
+	}
+
+	/**
+	 * Add a FitBit Subscription Update Log Entry to this FitBit User
+	 *
+	 * @param FitBitSubscriptionUpdateLog $log
+	 *
+	 * @return self
+	 */
+	public function addFitBitSubscriptionUpdateLog(FitBitSubscriptionUpdateLog $log)
+	{
+		$this->FitBitSubscriptionUpdateLog[] = $log;
+		return $this;
+	}
+
+	/**
+	 * Remove a FitBit Subscripiton Update Log Entry from this FitBit User
+	 *
+	 * @param FitBitSubscriptionUpdate $log
+	 *
+	 * @return self
+	 */
+	public function removeFitBitSubscriptionUpdateLog(FitBitSubscriptionUpdateLog $log)
+	{
+		$this->FitBitSubscriptionUpdateLog->removeElement($log);
+		return $this;
+	}
+
+	/**
+	 * Get the FitBit Subscription Update Logs for this FitBit User
+	 *
+	 * @return ArrayCollection
+	 */
+	public function getFitBitSubscriptionUpdateLogs()
+	{
+		return $this->FitBitSubscriptionUpdateLog;
+	}
+
+	/**
+	 * Add a FitBit Update Backlog Entry to this FitBit User
+	 *
+	 * @param FitBitUpdateBacklog $log
+	 *
+	 * @return self
+	 */
+	public function addFitBitUpdateBacklog(FitBitUpdateBacklog $log)
+	{
+		$this->FitBitUpdateBacklog[] = $log;
+		return $this;
+	}
+
+	/**
+	 * Remove a FitBit Update Backlog Entry from this FitBit User
+	 *
+	 * @param FitBitUpdateBacklog $log
+	 *
+	 * @return self
+	 */
+	public function removeFitBitUpdateBacklog(FitBitUpdateBacklog $log)
+	{
+		$this->FitBitUpdateBacklog->removeElement($log);
+		return $this;
+	}
+
+	/**
+	 * Get the FitBit Update Backlogs for this FitBit User
+	 *
+	 * @return ArrayCollection
+	 */
+	public function getFitBitUpdateBacklogs()
+	{
+		return $this->FitBitUpdateBacklog;
 	}
 }
