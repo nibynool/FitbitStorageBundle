@@ -32,6 +32,19 @@ class FitBitUser
 	 * @ORM\Column(type="text", length=255)
 	 */
 	protected $oauthSecret;
+	/**
+	 * @var ArrayCollection An array collection of FitBit Profiles for this user
+	 * @ORM\OneToMany(targetEntity="FitBitProfile", mappedBy="FitBitUser")
+	 */
+	protected $FitBitProfile;
+
+	/**
+	 * Class constructor
+	 */
+	public function __construct()
+	{
+		$this->FitBitProfile               = new ArrayCollection();
+	}
 
 	/**
 	 * Get the ID for this FitBit User
@@ -89,5 +102,41 @@ class FitBitUser
 		$this->oauthSecret = $secret;
 
 		return $this;
+	}
+
+	/**
+	 * Add a FitBit Profile to this FitBit User
+	 *
+	 * @param FitBitProfile $profile
+	 *
+	 * @return self
+	 */
+	public function addFitBitProfile(FitBitProfile $profile)
+	{
+		$this->FitBitProfile[] = $profile;
+		return $this;
+	}
+
+	/**
+	 * Remove a FitBit Profile from this FitBit User
+	 *
+	 * @param FitBitProfile $profile
+	 *
+	 * @return self
+	 */
+	public function removeFitBitProfile(FitBitProfile $profile)
+	{
+		$this->FitBitProfile->removeElement($profile);
+		return $this;
+	}
+
+	/**
+	 * Get the FitBit Profiles from this FitBit User
+	 *
+	 * @return ArrayCollection
+	 */
+	public function getFitBitProfiles()
+	{
+		return $this->FitBitProfile;
 	}
 }
