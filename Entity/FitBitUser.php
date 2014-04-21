@@ -42,6 +42,26 @@ class FitBitUser
 	 * @ORM\OneToMany(targetEntity="FitBitBody", mappedBy="FitBitUser")
 	 */
 	protected $FitBitBody;
+	/**
+	 * @var ArrayCollection An array collection of FitBit Activity Records for this user
+	 * @ORM\OneToMany(targetEntity="FitBitActivity", mappedBy="FitBitUser")
+	 */
+	protected $FitBitActivity;
+	/**
+	 * @var ArrayCollection An array collection of FitBit Activity Summary Records for this user
+	 * @ORM\OneToMany(targetEntity="FitBitActivitySummary", mappedBy="FitBitUser")
+	 */
+	protected $FitBitActivitySummary;
+	/**
+	 * @var ArrayCollection An array collection of FitBit Activity Distance Records for this user
+	 * @ORM\OneToMany(targetEntity="FitBitActivityDistances", mappedBy="FitBitUser")
+	 */
+	protected $FitBitActivityDistances;
+	/**
+	 * @var ArrayCollection An array collection of FitBit Other Distance Records for this user
+	 * @ORM\OneToMany(targetEntity="FitBitActivityOtherDistance", mappedBy="FitBitUser")
+	 */
+	protected $FitBitActivityOtherDistance;
 
 	/**
 	 * Class constructor
@@ -50,6 +70,10 @@ class FitBitUser
 	{
 		$this->FitBitProfile               = new ArrayCollection();
 		$this->FitBitBody                  = new ArrayCollection();
+		$this->FitBitActivity              = new ArrayCollection();
+		$this->FitBitActivitySummary       = new ArrayCollection();
+		$this->FitBitActivityDistances     = new ArrayCollection();
+		$this->FitBitActivityOtherDistance = new ArrayCollection();
 	}
 
 	/**
@@ -180,5 +204,149 @@ class FitBitUser
 	public function getFitBitBodies()
 	{
 		return $this->FitBitBody;
+	}
+
+	/**
+	 * Add a FitBit Activity to this FitBit User
+	 *
+	 * @param FitBitActivity $activity
+	 *
+	 * @return self
+	 */
+	public function addFitBitActivity(FitBitActivity $activity)
+	{
+		$this->FitBitActivity[] = $activity;
+		return $this;
+	}
+
+	/**
+	 * Remove a FitBit Activity from this FitBit User
+	 *
+	 * @param FitBitActivity $activity
+	 *
+	 * @return self
+	 */
+	public function removeFitBitActivity(FitBitActivity $activity)
+	{
+		$this->FitBitActivity->removeElement($activity);
+		return $this;
+	}
+
+	/**
+	 * Get the FitBit Activities from this FitBit User
+	 *
+	 * @return ArrayCollection
+	 */
+	public function getFitBitActivities()
+	{
+		return $this->FitBitActivity;
+	}
+
+	/**
+	 * Add a FitBit Activity Summary to this FitBit User
+	 *
+	 * @param FitBitActivitySummary $summary
+	 *
+	 * @return self
+	 */
+	public function addFitBitActivitySummary(FitBitActivitySummary $summary)
+	{
+		$this->FitBitActivitySummary[] = $summary;
+		return $this;
+	}
+
+	/**
+	 * Remove a FitBit Activity Summary from this FitBit User
+	 *
+	 * @param FitBitActivitySummary $summary
+	 *
+	 * @return self
+	 */
+	public function removeFitBitActivitySummary(FitBitActivitySummary $summary)
+	{
+		$this->FitBitActivitySummary->removeElement($summary);
+		return $this;
+	}
+
+	/**
+	 * Get the FitBit Activity Summaries from this FitBit User
+	 *
+	 * @return ArrayCollection
+	 */
+	public function getFitBitActivitySummaries()
+	{
+		return $this->FitBitActivitySummary;
+	}
+
+	/**
+	 * Add a FitBit Activity Distances to this FitBit User
+	 *
+	 * @param FitBitActivityDistances $distances
+	 *
+	 * @return self
+	 */
+	public function addFitBitActivityDistances(FitBitActivityDistances $distances)
+	{
+		$this->FitBitActivityDistances[] = $distances;
+		return $this;
+	}
+
+	/**
+	 * Remove a FitBit Activity Distances from this FitBit User
+	 *
+	 * @param FitBitActivityDistances $distances
+	 *
+	 * @return self
+	 */
+	public function removeFitBitActivityDistances(FitBitActivityDistances $distances)
+	{
+		$this->FitBitActivityDistances->removeElement($distances);
+		return $this;
+	}
+
+	/**
+	 * Get the FitBit Activity Distances from this FitBit User
+	 *
+	 * @return ArrayCollection
+	 */
+	public function getFitBitActivityDistances()
+	{
+		return $this->FitBitActivityDistances;
+	}
+
+	/**
+	 * Add a FitBit Activity Other Distance to this FitBit User
+	 *
+	 * @param FitBitActivityOtherDistance $distance
+	 *
+	 * @return self
+	 */
+	public function addFitBitActivityOtherDistance(FitBitActivityOtherDistance $distance)
+	{
+		$this->FitBitActivityOtherDistance[] = $distance;
+		return $this;
+	}
+
+	/**
+	 * Remove a FitBit Activity Other Distance from this FitBit User
+	 *
+	 * @param FitBitActivityOtherDistance $distance
+	 *
+	 * @return self
+	 */
+	public function removeFitBitActivityOtherDistance(FitBitActivityOtherDistance $distance)
+	{
+		$this->FitBitActivityOtherDistance->removeElement($distance);
+		return $this;
+	}
+
+	/**
+	 * Get the FitBit Activity Other Distance from this FitBit User
+	 *
+	 * @return ArrayCollection
+	 */
+	public function getFitBitActivityOtherDistances()
+	{
+		return $this->FitBitActivityOtherDistance;
 	}
 }
