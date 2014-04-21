@@ -37,6 +37,11 @@ class FitBitUser
 	 * @ORM\OneToMany(targetEntity="FitBitProfile", mappedBy="FitBitUser")
 	 */
 	protected $FitBitProfile;
+	/**
+	 * @var ArrayCollection An array collection of FitBit Body Records for this user
+	 * @ORM\OneToMany(targetEntity="FitBitBody", mappedBy="FitBitUser")
+	 */
+	protected $FitBitBody;
 
 	/**
 	 * Class constructor
@@ -44,6 +49,7 @@ class FitBitUser
 	public function __construct()
 	{
 		$this->FitBitProfile               = new ArrayCollection();
+		$this->FitBitBody                  = new ArrayCollection();
 	}
 
 	/**
@@ -138,5 +144,41 @@ class FitBitUser
 	public function getFitBitProfiles()
 	{
 		return $this->FitBitProfile;
+	}
+
+	/**
+	 * Add a FitBit Body entry for this FitBit User
+	 *
+	 * @param FitBitBody $body
+	 *
+	 * @return self
+	 */
+	public function addFitBitBody(FitBitBody $body)
+	{
+		$this->FitBitBody[] = $body;
+		return $this;
+	}
+
+	/**
+	 * Remove a FitBit Body entry from this FitBit User
+	 *
+	 * @param FitBitBody $body
+	 *
+	 * @return self
+	 */
+	public function removeFitBitBody(FitBitBody $body)
+	{
+		$this->FitBitBody->removeElement($body);
+		return $this;
+	}
+
+	/**
+	 * Get the FitBit Bodie Entries from this FitBit User
+	 *
+	 * @return ArrayCollection
+	 */
+	public function getFitBitBodies()
+	{
+		return $this->FitBitBody;
 	}
 }
