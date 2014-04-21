@@ -62,6 +62,16 @@ class FitBitUser
 	 * @ORM\OneToMany(targetEntity="FitBitActivityOtherDistance", mappedBy="FitBitUser")
 	 */
 	protected $FitBitActivityOtherDistance;
+	/**
+	 * @var ArrayCollection An array collection of FitBit Sleep Records for this user
+	 * @ORM\OneToMany(targetEntity="FitBitSleep", mappedBy="FitBitUser")
+	 */
+	protected $FitBitSleep;
+	/**
+	 * @var ArrayCollection An array collection of FitBit Sleep Summary Records for this user
+	 * @ORM\OneToMany(targetEntity="FitBitSleepSummary", mappedBy="FitBitUser")
+	 */
+	protected $FitBitSleepSummary;
 
 	/**
 	 * Class constructor
@@ -74,6 +84,8 @@ class FitBitUser
 		$this->FitBitActivitySummary       = new ArrayCollection();
 		$this->FitBitActivityDistances     = new ArrayCollection();
 		$this->FitBitActivityOtherDistance = new ArrayCollection();
+		$this->FitBitSleep                 = new ArrayCollection();
+		$this->FitBitSleepSummary          = new ArrayCollection();
 	}
 
 	/**
@@ -348,5 +360,77 @@ class FitBitUser
 	public function getFitBitActivityOtherDistances()
 	{
 		return $this->FitBitActivityOtherDistance;
+	}
+
+	/**
+	 * Add a FitBit Sleep Log to this FitBit User
+	 *
+	 * @param FitBitSleep $sleep
+	 *
+	 * @return self
+	 */
+	public function addFitBitSleep(FitBitSleep $sleep)
+	{
+		$this->FitBitSleep[] = $sleep;
+		return $this;
+	}
+
+	/**
+	 * Remove a FitBit Sleep Log from this FitBit User
+	 *
+	 * @param FitBitSleep $sleep
+	 *
+	 * @return self
+	 */
+	public function removeFitBitSleep(FitBitSleep $sleep)
+	{
+		$this->FitBitSleep->removeElement($sleep);
+		return $this;
+	}
+
+	/**
+	 * Get the FitBit Sleep Logs from this FitBit User
+	 *
+	 * @return ArrayCollection
+	 */
+	public function getFitBitSleeps()
+	{
+		return $this->FitBitSleep;
+	}
+
+	/**
+	 * Add a FitBit Sleep Summary to this FitBit User
+	 *
+	 * @param FitBitSleepSummary $summary
+	 *
+	 * @return self
+	 */
+	public function addFitBitSleepSummary(FitBitSleepSummary $summary)
+	{
+		$this->FitBitSleepSummary[] = $summary;
+		return $this;
+	}
+
+	/**
+	 * Remove a FitBit Sleep Summary from this FitBit User
+	 *
+	 * @param FitBitSleepSummary $summary
+	 *
+	 * @return self
+	 */
+	public function removeFitBitSleepSummary(FitBitSleepSummary $summary)
+	{
+		$this->FitBitSleep->removeElement($sleep);
+		return $this;
+	}
+
+	/**
+	 * Get the FitBit Sleep Summaries from this FitBit User
+	 *
+	 * @return ArrayCollection
+	 */
+	public function getFitBitSleepSummaries()
+	{
+		return $this->FitBitSleepSummary;
 	}
 }
