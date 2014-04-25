@@ -49,7 +49,7 @@ class FitBitSubscriptionUpdateLog
 	/**
 	 * @var FitBitRequestLog The request log entry that performed this update
 	 * @ORM\OneToOne(targetEntity="FitBitRequestLog", inversedBy="FitBitSubscriptionUpdateLog")
-	 * @ORM\JoinColumn(name="fitbitRequestLogId", referencedColumname="id")
+	 * @ORM\JoinColumn(name="fitbitRequestLogId", referencedColumnName="id")
 	 */
 	protected $FitBitRequestLog;
 
