@@ -33,17 +33,17 @@ class FitBitActivity
 	protected $recordDate;
 	/**
 	 * @var int Activity ID
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $activityId;
 	/**
 	 * @var int Activity Parent ID
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $activityParentId;
 	/**
 	 * @var int Calories Burnt
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $caloriesBurnt;
 	/**
@@ -53,7 +53,7 @@ class FitBitActivity
 	protected $description;
 	/**
 	 * @var int Duration of activity
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $duration;
 	/**
@@ -83,7 +83,7 @@ class FitBitActivity
 	protected $startTime;
 	/**
 	 * @var int Steps
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $steps;
 

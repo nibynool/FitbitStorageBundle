@@ -18,7 +18,7 @@ class FitBitSleepType
 	/**
 	 * @var int Numeric ID for this sleep type record
 	 * @ORM\Id
-	 * @ORM\Column(type="int")
+	 * @ORM\Column(type="integer")
 	 */
 	protected $id;
 	/**

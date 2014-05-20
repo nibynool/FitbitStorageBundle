@@ -438,7 +438,7 @@ class FitBitUser
 	 */
 	public function removeFitBitSleepSummary(FitBitSleepSummary $summary)
 	{
-		$this->FitBitSleep->removeElement($sleep);
+		$this->FitBitSleep->removeElement($summary);
 		return $this;
 	}
 
@@ -502,9 +502,9 @@ class FitBitUser
 	}
 
 	/**
-	 * Remove a FitBit Subscripiton Update Log Entry from this FitBit User
+	 * Remove a FitBit Subscription Update Log Entry from this FitBit User
 	 *
-	 * @param FitBitSubscriptionUpdate $log
+	 * @param FitBitSubscriptionUpdateLog $log
 	 *
 	 * @return self
 	 */

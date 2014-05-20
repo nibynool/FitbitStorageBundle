@@ -33,57 +33,57 @@ class FitBitActivitySummary
 	protected $recordDate;
 	/**
 	 * @var int ActivityCalories
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $activityCalories;
 	/**
 	 * @var int Base Metabolic Rate Calories
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $baseMetabolicCalories;
 	/**
 	 * @var int Calories Burnt
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $caloriesBurnt;
 	/**
 	 * @var int Elevation
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $elevation;
 	/**
 	 * @var int Moderately Active Minutes
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $moderateMinutes;
 	/**
 	 * @var int Floors
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $floors;
 	/**
 	 * @var int Lightly Active Minutes
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $lightMinutes;
 	/**
 	 * @var int Marginal Calories
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $marginalCalories;
 	/**
 	 * @var int Sedentary Minutes
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $sedentaryMinutes;
 	/**
 	 * @var int Steps
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $steps;
 	/**
 	 * @var int Very Active Minutes
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $activeMinutes;
 

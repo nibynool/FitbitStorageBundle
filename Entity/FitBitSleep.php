@@ -34,12 +34,12 @@ class FitBitSleep
 	protected $logId;
 	/**
 	 * @var bool Is this the main FitBit Sleep
-	 * @ORM\Column(type="bool", nullable=false)
+	 * @ORM\Column(type="boolean", nullable=false)
 	 */
 	protected $mainSleep;
 	/**
 	 * @var int The FitBit Sleep Efficiency number
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $efficiency;
 	/**
@@ -49,52 +49,52 @@ class FitBitSleep
 	protected $startTime;
 	/**
 	 * @var int The FitBit Sleep duration
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $duration;
 	/**
 	 * @var int The FitBit Minutes to fall asleep
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $minutesToSleep;
 	/**
 	 * @var int The FitBit Minutes of sleep
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $minutesAsleep;
 	/**
 	 * @var int The FitBit Minutes awake
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $minutesAwake;
 	/**
 	 * @var int The FitBit Minutes after wakeup
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $minutesAfterWakeup;
 	/**
 	 * @var int The FitBit Number of times awake
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $timesAwake;
 	/**
 	 * @var int The FitBit Number of minutes awake
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $timeAwake;
 	/**
 	 * @var int The FitBit Number of times restless
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $timesRestless;
 	/**
 	 * @var int The FitBit Number of minutes restless
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $timeRestless;
 	/**
 	 * @var int The FitBit Number of minutes in Bed
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $timeInBed;
 	/**

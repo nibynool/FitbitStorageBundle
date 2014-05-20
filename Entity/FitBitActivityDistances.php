@@ -33,37 +33,37 @@ class FitBitActivityDistances
 	protected $recordDate;
 	/**
 	 * @var int Tracker distance
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $tracker;
 	/**
 	 * @var int Logged Activities Distance
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $loggedActivities;
 	/**
 	 * @var int Total distance
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $total;
 	/**
 	 * @var int Very Active Distance
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $veryActive;
 	/**
 	 * @var int Moderately Active Distance
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $moderatelyActive;
 	/**
 	 * @var int Lightly Active Distance
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $lightlyActive;
 	/**
 	 * @var int Sedentary Distance
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $sedentary;
 

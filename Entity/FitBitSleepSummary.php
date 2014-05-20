@@ -28,17 +28,17 @@ class FitBitSleepSummary
 	protected $FitBitUser;
 	/**
 	 * @var int The Time spent asleep
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $timeAsleep;
 	/**
 	 * @var int Number of sleep records
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $sleepRecords;
 	/**
 	 * @var int The time in bed
-	 * @ORM\Column(type="int", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false)
 	 */
 	protected $timeInBed;
 	/**

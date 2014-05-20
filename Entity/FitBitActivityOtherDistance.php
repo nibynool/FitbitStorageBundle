@@ -38,7 +38,7 @@ class FitBitActivityOtherDistance
 	protected $name;
 	/**
 	 * @var int Distance
-	 * @ORM\Column(type="int", nullable=true)
+	 * @ORM\Column(type="integer", nullable=true)
 	 */
 	protected $distance;
 
