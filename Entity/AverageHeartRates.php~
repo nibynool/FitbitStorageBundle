@@ -1,0 +1,34 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fitbit_heart_rate_averages")
+ */
+class AverageHeartRates
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="date")
+     */
+    private $date;
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="string", length=255)
+     */
+    private $tracker;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $heart_rate;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="AverageHeartRates")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $User;
+}

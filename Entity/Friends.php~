@@ -1,0 +1,53 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_friends",
+ *     indexes={@ORM\Index(name="fitbit_fr_p", columns={"profile_id"}),@ORM\Index(name="fitbit_fr_u", columns={"user_id"})},
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="friend", columns={"user_id","profile_id"})}
+ * )
+ */
+class Friends
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\FriendLeaderboardAverages", mappedBy="Friend")
+     */
+    private $AverageLeaderboards;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\FriendLeaderboardLifetime", mappedBy="Friend")
+     */
+    private $LifetimeLeaderboards;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\FriendLeaderboardRank", mappedBy="Friend")
+     */
+    private $RankLeaderboard;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\FriendLeaderboardSummary", mappedBy="Friend")
+     */
+    private $SummaryLeaderboard;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Profiles", inversedBy="Friends")
+     * @ORM\JoinColumn(name="profile_id", referencedColumnName="id", nullable=false, onDelete="restrict")
+     */
+    private $FriendProfile;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="Friends")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $User;
+}

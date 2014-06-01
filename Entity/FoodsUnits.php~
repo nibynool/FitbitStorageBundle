@@ -1,0 +1,36 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fitbit_foods_unit")
+ */
+class FoodsUnits
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $plural;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Foods", mappedBy="AvailableUnits")
+     */
+    private $Food;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\MealFoods", mappedBy="FoodUnit")
+     */
+    private $Meals;
+}

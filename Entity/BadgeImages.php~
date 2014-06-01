@@ -1,0 +1,51 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_badge_images",
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="type_id_value_unit_idx", columns={"type_id","value","unit"})}
+ * )
+ */
+class BadgeImages
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $value;
+
+    /**
+     * @ORM\Column(type="string", length=45, nullable=true)
+     */
+    private $unit;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $image_50;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $image_75;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Badges", mappedBy="Image")
+     */
+    private $Badges;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\BadgeTypes", inversedBy="Images")
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $Type;
+}

@@ -1,0 +1,29 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fitbit_friend_requests", indexes={@ORM\Index(name="friend_idx", columns={"friend_id"})})
+ */
+class FriendRequests
+{
+    /**
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    private $datetime;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="FriendRequests")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $User;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Profiles", inversedBy="FriendRequests")
+     * @ORM\JoinColumn(name="friend_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $FriendProfile;
+}

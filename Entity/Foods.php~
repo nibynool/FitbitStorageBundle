@@ -1,0 +1,93 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_foods",
+ *     indexes={
+ *         @ORM\Index(name="name_idx", columns={"name"}),
+ *         @ORM\Index(name="user_idx", columns={"user_id"}),
+ *         @ORM\Index(name="unit_idx", columns={"unit_id"}),
+ *         @ORM\Index(name="locale_idx", columns={"locale_id"})
+ *     },
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="name_locale_id_idx", columns={"name","locale_id"})}
+ * )
+ */
+class Foods
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $brand;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $calories;
+
+    /**
+     * @ORM\Column(type="decimal", nullable=false)
+     */
+    private $serving_size;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\FoodServings", mappedBy="Food")
+     */
+    private $Servings;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\FoodUnits", mappedBy="Foods")
+     */
+    private $DefaultUnit;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\NutritionalInformation", mappedBy="Food")
+     */
+    private $NutritionalInformation;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\MealFoods", mappedBy="Food")
+     */
+    private $Meals;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\FavoriteFoods", mappedBy="Food")
+     */
+    private $FavouriteFood;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\FoodsConsumed", mappedBy="Food")
+     */
+    private $Consumptions;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="CustomFoods")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="cascade")
+     */
+    private $User;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\FoodsUnits", inversedBy="Food")
+     * @ORM\JoinColumn(name="unit_id", referencedColumnName="id", nullable=false, onDelete="restrict")
+     */
+    private $AvailableUnits;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Locales", inversedBy="Foods")
+     * @ORM\JoinColumn(name="locale_id", referencedColumnName="id", nullable=false, onDelete="restrict")
+     */
+    private $Locale;
+}

@@ -1,0 +1,72 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fitbit_alarms", indexes={@ORM\Index(name="device_idx", columns={"device_id"})})
+ */
+class Alarms
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $deleted;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $enabled;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $label;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $recurring;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $snooze_count;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $snooze_length;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $synced_to_device;
+
+    /**
+     * @ORM\Column(type="time", nullable=false)
+     */
+    private $time;
+
+    /**
+     * @ORM\Column(type="string", length=45, nullable=false)
+     */
+    private $vibrate;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\AlarmDays", mappedBy="Alarm")
+     */
+    private $Day;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Devices", inversedBy="Alarms")
+     * @ORM\JoinColumn(name="device_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $Device;
+}

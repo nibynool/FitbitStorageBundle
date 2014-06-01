@@ -1,0 +1,35 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_activity_summary_distances",
+ *     indexes={@ORM\Index(name="activity_idx", columns={"activity_id"})}
+ * )
+ */
+class ActivitySummaryDistances
+{
+    /**
+     * @ORM\Column(type="decimal", nullable=false)
+     */
+    private $distance;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\ActivitySummaries", inversedBy="Distances")
+     * @ORM\JoinColumn(name="summary_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $Summaries;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(
+     *     targetEntity="Nibynool\FitbitStorageBundle\Entity\ActivitySummaryDistanceActivities",
+     *     inversedBy="Distance"
+     * )
+     * @ORM\JoinColumn(name="activity_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $Activities;
+}

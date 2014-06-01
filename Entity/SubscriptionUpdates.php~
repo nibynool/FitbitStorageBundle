@@ -1,0 +1,53 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_subscription_update_logs",
+ *     indexes={@ORM\Index(name="user_idx", columns={"user_id"})},
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="log_idx", columns={"log_id"})}
+ * )
+ */
+class SubscriptionUpdates
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    private $notification_timestamp;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $end_point;
+
+    /**
+     * @ORM\Column(type="date", nullable=false)
+     */
+    private $update_date;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    private $update_timestamp;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="SubscriptionUpdates")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="restrict")
+     */
+    private $User;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\RequestLogs", inversedBy="SubscriptionUpdates")
+     * @ORM\JoinColumn(name="log_id", referencedColumnName="id", onDelete="restrict")
+     */
+    private $RequestLog;
+}

@@ -1,0 +1,182 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fitbit_users")
+ */
+class Users
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", nullable=false)
+     */
+    private $oauth_token;
+
+    /**
+     * @ORM\Column(type="string", nullable=false)
+     */
+    private $oauth_secret;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\ActivitySummaries", mappedBy="User")
+     */
+    private $ActivitySummaries;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Bodies", mappedBy="User")
+     */
+    private $Bodies;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Profiles", mappedBy="User")
+     */
+    private $Profile;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\RequestLogs", mappedBy="User")
+     */
+    private $Requests;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Sleep", mappedBy="User")
+     */
+    private $Sleeps;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\SleepSummaries", mappedBy="User")
+     */
+    private $SleepSummaries;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\SubscriptionUpdates", mappedBy="User")
+     */
+    private $SubscriptionUpdates;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\UpdateBacklog", mappedBy="User")
+     */
+    private $Backlog;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Activities", mappedBy="User")
+     */
+    private $Activities;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\FavoriteActivities", mappedBy="User")
+     */
+    private $FavoriteActivities;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\ActivityBestStatistics", mappedBy="User")
+     */
+    private $BestStatistics;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Goals", mappedBy="User")
+     */
+    private $Goals;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\ActivityLifetimeStatistics", mappedBy="User")
+     */
+    private $LifetimeStatistics;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\BloodPressures", mappedBy="User")
+     */
+    private $BloodPressures;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\BloodPressureAverages", mappedBy="User")
+     */
+    private $BloodPressureAverages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Glucose", mappedBy="User")
+     */
+    private $Glucose;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\HBA1C", mappedBy="User")
+     */
+    private $HBA1Cs;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\HeartRates", mappedBy="User")
+     */
+    private $HeartRates;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\AverageHeartRates", mappedBy="User")
+     */
+    private $AverageHeartRates;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Foods", mappedBy="User")
+     */
+    private $CustomFoods;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Meals", mappedBy="User")
+     */
+    private $Meals;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\FavoriteFoods", mappedBy="User")
+     */
+    private $FavoriteFoods;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\FoodsConsumed", mappedBy="User")
+     */
+    private $FoodsConsumed;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\FoodSummaries", mappedBy="User")
+     */
+    private $FoodSummary;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Devices", mappedBy="User")
+     */
+    private $Devices;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Friends", mappedBy="User")
+     */
+    private $Friends;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Subscriptions", mappedBy="User")
+     */
+    private $Subscriptions;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\FriendRequests", mappedBy="User")
+     */
+    private $FriendRequests;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Badges", mappedBy="User")
+     */
+    private $Badges;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\WaterSummary", mappedBy="User")
+     */
+    private $WaterSummary;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Water", mappedBy="User")
+     */
+    private $Water;
+}

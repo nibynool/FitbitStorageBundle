@@ -1,0 +1,28 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fitbit_glucose_hba1c")
+ */
+class HBA1C
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="date")
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="decimal", nullable=false)
+     */
+    private $hba1c;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="HBA1Cs")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $User;
+}

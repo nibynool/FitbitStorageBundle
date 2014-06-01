@@ -1,0 +1,97 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fitbit_sleep", indexes={@ORM\Index(name="user_idx", columns={"user_id"})})
+ */
+class Sleep
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer", length=8)
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $awake_count;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $awake_duration;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $awakenings_count;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $duration;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $efficiency;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $is_main_sleep;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $minutes_after_wakeup;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $minutes_asleep;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $minutes_awake;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $minutes_to_fall_asleep;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $restless_count;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $restless_duration;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    private $start_time;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $time_in_bed;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\SleepDetails", mappedBy="Sleep")
+     */
+    private $Details;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="Sleeps")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $User;
+}

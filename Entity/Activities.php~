@@ -1,0 +1,76 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_activities",
+ *     indexes={
+ *         @ORM\Index(name="parent_idx", columns={"parent_id"}),
+ *         @ORM\Index(name="user_idx", columns={"user_id"}),
+ *         @ORM\Index(name="access_level_idx", columns={"access_level_id"})
+ *     }
+ * )
+ */
+class Activities
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $max_speed;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $min_speed;
+
+    /**
+     * @ORM\Column(type="decimal", nullable=true)
+     */
+    private $mets;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $has_speed;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Activities", mappedBy="Parent")
+     */
+    private $Children;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\FavoriteActivities", mappedBy="Activity")
+     */
+    private $UserFavoriteActivities;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Activities", inversedBy="Children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="cascade")
+     */
+    private $Parent;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="Activities")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="cascade")
+     */
+    private $User;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\AccessLevels", inversedBy="Activities")
+     * @ORM\JoinColumn(name="access_level_id", referencedColumnName="id", onDelete="restrict")
+     */
+    private $AccessLevel;
+}

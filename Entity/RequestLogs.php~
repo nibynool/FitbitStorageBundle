@@ -1,0 +1,43 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fitbit_request_logs", indexes={@ORM\Index(name="user_idx", columns={"user_id"})})
+ */
+class RequestLogs
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    private $request_timestamp;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $end_point;
+
+    /**
+     * @ORM\Column(type="text", nullable=false)
+     */
+    private $result;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\SubscriptionUpdates", mappedBy="RequestLog")
+     */
+    private $SubscriptionUpdates;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="Requests")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="restrict")
+     */
+    private $User;
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace NibyNool\FitBitStorageBundle\DependencyInjection;
+namespace Nibynool\FitbitStorageBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('niby_nool_fit_bit_storage');
+        $treeBuilder->root('nibynool_fitbit_storage');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

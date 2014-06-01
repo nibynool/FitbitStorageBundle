@@ -1,0 +1,38 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fitbit_blood_pressure_averages")
+ */
+class BloodPressureAverages
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="date")
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $diastolic;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $systolic;
+
+    /**
+     * @ORM\Column(type="string", length=45, nullable=false)
+     */
+    private $condition;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="BloodPressureAverages")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $User;
+}
