@@ -1,0 +1,36 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_subscriptions",
+ *     indexes={@ORM\Index(name="user_idx", columns={"user_id"}),@ORM\Index(name="collection_idx", columns={"collection_id"})}
+ * )
+ */
+class Subscriptions
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $subscriber;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="Subscriptions")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $User;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\SubscriptionType", inversedBy="Subscriptions")
+     * @ORM\JoinColumn(name="collection_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $Type;
+}

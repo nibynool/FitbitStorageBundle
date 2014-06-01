@@ -1,0 +1,51 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_foods_consumed",
+ *     indexes={
+ *         @ORM\Index(name="user_idx", columns={"user_id"}),
+ *         @ORM\Index(name="food_idx", columns={"food_id"}),
+ *         @ORM\Index(name="unit_idx", columns={"unit_id"})
+ *     }
+ * )
+ */
+class FoodsConsumed
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="date", nullable=false)
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="decimal", nullable=false)
+     */
+    private $amount;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="FoodsConsumed")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $User;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Foods", inversedBy="Consumptions")
+     * @ORM\JoinColumn(name="food_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $Food;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\FoodsUnits")
+     * @ORM\JoinColumn(name="unit_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $Unit;
+}

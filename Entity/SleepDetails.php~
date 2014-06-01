@@ -1,0 +1,32 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_sleep_details",
+ *     indexes={@ORM\Index(name="sleep_idx", columns={"sleep_id"}),@ORM\Index(name="sleep_type_idx", columns={"sleep_type_id"})}
+ * )
+ */
+class SleepDetails
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="datetime")
+     */
+    private $date_time;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Sleep", inversedBy="Details")
+     * @ORM\JoinColumn(name="sleep_id", referencedColumnName="id", nullable=false, onDelete="restrict")
+     */
+    private $Sleep;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\SleepTypes")
+     * @ORM\JoinColumn(name="sleep_type_id", referencedColumnName="id", nullable=false, onDelete="restrict")
+     */
+    private $Type;
+}

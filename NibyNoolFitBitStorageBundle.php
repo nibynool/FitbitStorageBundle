@@ -1,14 +1,14 @@
 <?php
 
-namespace NibyNool\FitBitStorageBundle;
+namespace Nibynool\FitbitStorageBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Class NibyNoolFitBitStorageBundle
+ * Class NibynoolFitbitStorageBundle
  *
- * @package NibyNool\FitBitStorageBundle
+ * @package Nibynool\FitbitStorageBundle
  */
-class NibyNoolFitBitStorageBundle extends Bundle
+class NibynoolFitbitStorageBundle extends Bundle
 {
 }

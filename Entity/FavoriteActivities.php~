@@ -1,0 +1,27 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fitbit_favorite_activities", indexes={@ORM\Index(name="activity_idx", columns={"activity_id"})})
+ */
+class FavoriteActivities
+{
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="FavoriteActivities")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $User;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(
+     *     targetEntity="Nibynool\FitbitStorageBundle\Entity\Activities",
+     *     inversedBy="UserFavoriteActivities"
+     * )
+     * @ORM\JoinColumn(name="activity_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $Activity;
+}

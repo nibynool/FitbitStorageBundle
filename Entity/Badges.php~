@@ -1,0 +1,53 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_badges",
+ *     indexes={@ORM\Index(name="type_idx", columns={"type_id"}),@ORM\Index(name="image_idx", columns={"image_id"})}
+ * )
+ */
+class Badges
+{
+    /**
+     * @ORM\Column(type="date", nullable=false)
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $value;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $times_achieved;
+
+    /**
+     * @ORM\Column(type="string", length=45, nullable=true)
+     */
+    private $unit;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="Badges")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $User;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\BadgeTypes", inversedBy="Badges")
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $Type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\BadgeImages", inversedBy="Badges")
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $Image;
+}

@@ -1,0 +1,35 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fitbit_goals", indexes={@ORM\Index(name="goal_type_idx", columns={"goal_type_id"})})
+ */
+class Goals
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="date")
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="decimal", nullable=false)
+     */
+    private $value;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="Goals")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $User;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\GoalTypes", inversedBy="Goals")
+     * @ORM\JoinColumn(name="goal_type_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $Type;
+}

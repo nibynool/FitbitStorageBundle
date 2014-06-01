@@ -1,0 +1,46 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_devices",
+ *     indexes={@ORM\Index(name="user_idx", columns={"user_id"}),@ORM\Index(name="version_idx", columns={"device_version_id"})}
+ * )
+ */
+class Devices
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=45, nullable=false)
+     */
+    private $battery;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    private $last_sync_time;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Alarms", mappedBy="Device")
+     */
+    private $Alarms;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="Devices")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $User;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\DeviceVersions", inversedBy="Devices")
+     * @ORM\JoinColumn(name="device_version_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $Version;
+}

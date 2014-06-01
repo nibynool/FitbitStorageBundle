@@ -1,0 +1,178 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_profiles",
+ *     indexes={
+ *         @ORM\Index(name="user_id_idx", columns={"user_id"}),
+ *         @ORM\Index(name="distance_unit_id_idx", columns={"distance_unit_id"}),
+ *         @ORM\Index(name="foods_locale_idx", columns={"foods_locale_id"}),
+ *         @ORM\Index(name="locale_idx", columns={"locale_id"}),
+ *         @ORM\Index(name="glucose_unit_id_idx", columns={"glucose_unit_id"}),
+ *         @ORM\Index(name="height_unit_idx", columns={"height_unit_id"}),
+ *         @ORM\Index(name="water_unit_idx", columns={"water_unit_id"}),
+ *         @ORM\Index(name="weight_unit_idx", columns={"weight_unit_id"})
+ *     },
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="encoded_id_idx", columns={"encoded_id"})}
+ * )
+ */
+class Profiles
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $about_me;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $avatar;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $avatar150;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $city;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $country;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $date_of_birth;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $display_name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $encoded_id;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $full_name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $gender;
+
+    /**
+     * @ORM\Column(type="decimal", nullable=true)
+     */
+    private $height;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nickname;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $member_since;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $offset_from_utc_millis;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $state;
+
+    /**
+     * @ORM\Column(type="decimal", nullable=true)
+     */
+    private $stride_length_running;
+
+    /**
+     * @ORM\Column(type="decimal", nullable=true)
+     */
+    private $stride_length_walking;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $timezone;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Friends", mappedBy="FriendProfile")
+     */
+    private $Friends;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\FriendRequests", mappedBy="FriendProfile")
+     */
+    private $FriendRequests;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="Profile")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="cascade")
+     */
+    private $User;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\DistanceUnits")
+     * @ORM\JoinColumn(name="distance_unit_id", referencedColumnName="id", onDelete="restrict")
+     */
+    private $DistanceUnit;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Locales")
+     * @ORM\JoinColumn(name="foods_locale_id", referencedColumnName="id", onDelete="restrict")
+     */
+    private $FoodLocale;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Locales")
+     * @ORM\JoinColumn(name="locale_id", referencedColumnName="id", onDelete="restrict")
+     */
+    private $Locale;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\GlucoseUnits")
+     * @ORM\JoinColumn(name="glucose_unit_id", referencedColumnName="id", onDelete="restrict")
+     */
+    private $GlucoseUnits;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\HeightUnits")
+     * @ORM\JoinColumn(name="height_unit_id", referencedColumnName="id", onDelete="restrict")
+     */
+    private $HeightUnit;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\WaterUnits")
+     * @ORM\JoinColumn(name="water_unit_id", referencedColumnName="id", onDelete="restrict")
+     */
+    private $WaterUnits;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\WeightUnits")
+     * @ORM\JoinColumn(name="weight_unit_id", referencedColumnName="id", onDelete="restrict")
+     */
+    private $WeightUnit;
+}

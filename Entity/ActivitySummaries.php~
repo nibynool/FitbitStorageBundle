@@ -1,0 +1,95 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_activity_summaries",
+ *     indexes={@ORM\Index(name="user_idx", columns={"user_id"})},
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="user_date_idx", columns={"user_id","date"})}
+ * )
+ */
+class ActivitySummaries
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="date", nullable=false)
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $activity_calories;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $calories_bmr;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $calories_out;
+
+    /**
+     * @ORM\Column(type="decimal", nullable=true)
+     */
+    private $elevation;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $fairly_active_minutes;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $floors;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $lightly_active_minutes;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $marginal_calories;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $sedentary_minutes;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $steps;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $very_active_minutes;
+
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="Nibynool\FitbitStorageBundle\Entity\ActivitySummaryDistances",
+     *     mappedBy="Summaries"
+     * )
+     */
+    private $Distances;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="ActivitySummaries")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $User;
+}

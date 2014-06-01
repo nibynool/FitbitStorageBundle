@@ -1,0 +1,45 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_activity_lifetime_statistics",
+ *     indexes={@ORM\Index(name="user_idx", columns={"user_id"}),@ORM\Index(name="endpoint_idx", columns={"endpoint_id"})}
+ * )
+ */
+class ActivityLifetimeStatistics
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $tracker;
+
+    /**
+     * @ORM\Column(type="decimal", nullable=false)
+     */
+    private $value;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Users", inversedBy="LifetimeStatistics")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $User;
+
+    /**
+     * @ORM\ManyToOne(
+     *     targetEntity="Nibynool\FitbitStorageBundle\Entity\ActivityStatisticEndpoints",
+     *     inversedBy="LifetimeStatistics"
+     * )
+     * @ORM\JoinColumn(name="endpoint_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $EndPoint;
+}

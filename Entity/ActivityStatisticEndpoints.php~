@@ -1,0 +1,38 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_activity_statistic_endpoints",
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="name_idx", columns={"name"})}
+ * )
+ */
+class ActivityStatisticEndpoints
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", unique=true, length=45, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\ActivityBestStatistics", mappedBy="EndPoint")
+     */
+    private $BestStatistics;
+
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="Nibynool\FitbitStorageBundle\Entity\ActivityLifetimeStatistics",
+     *     mappedBy="EndPoint"
+     * )
+     */
+    private $LifetimeStatistics;
+}

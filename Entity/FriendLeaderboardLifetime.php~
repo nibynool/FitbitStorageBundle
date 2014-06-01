@@ -1,0 +1,29 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fitbit_friends_leaderboard_lifetime", indexes={@ORM\Index(name="type_idx", columns={"type_id"})})
+ */
+class FriendLeaderboardLifetime
+{
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $value;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Friends", inversedBy="LifetimeLeaderboards")
+     * @ORM\JoinColumn(name="friend_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $Friend;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\LeaderboardTypes")
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $Type;
+}

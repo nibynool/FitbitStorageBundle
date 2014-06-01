@@ -1,0 +1,35 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_device_versions",
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="version_idx", columns={"version"})}
+ * )
+ */
+class DeviceVersions
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", unique=true, length=45, nullable=false)
+     */
+    private $version;
+
+    /**
+     * @ORM\Column(type="string", length=45, nullable=false)
+     */
+    private $type;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nibynool\FitbitStorageBundle\Entity\Devices", mappedBy="Version")
+     */
+    private $Devices;
+}

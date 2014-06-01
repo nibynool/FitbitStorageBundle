@@ -1,0 +1,33 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_activity_summary_distance_activities",
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="name_idx", columns={"name"})}
+ * )
+ */
+class ActivitySummaryDistanceActivities
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=45, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="Nibynool\FitbitStorageBundle\Entity\ActivitySummaryDistances",
+     *     mappedBy="Activities"
+     * )
+     */
+    private $Distance;
+}

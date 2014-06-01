@@ -1,0 +1,32 @@
+<?php
+namespace Nibynool\FitbitStorageBundle\Entity;
+use Doctrine\ORM\Mapping AS ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *     name="fitbit_food_nutritional_information",
+ *     indexes={@ORM\Index(name="nutritional_names_idx", columns={"nutritional_name_id"})}
+ * )
+ */
+class NutritionalInformation
+{
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $value;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\Foods", inversedBy="NutritionalInformation")
+     * @ORM\JoinColumn(name="food_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $Food;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Nibynool\FitbitStorageBundle\Entity\NutritionalNames")
+     * @ORM\JoinColumn(name="nutritional_name_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     */
+    private $Name;
+}
